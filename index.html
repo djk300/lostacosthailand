@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LOS Tacos — Authentic Mexican Cooking in the Land of Smiles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #E8522A;
+    --orange-hover: #D04420;
+    --orange-light: #F07A56;
+    --orange-pale: #FBE9E2;
+    --cream: #FAF6F0;
+    --cream-mid: #F3EDE3;
+    --charcoal: #3D3D4A;
+    --charcoal-mid: #6B6B78;
+    --charcoal-light: #9898A3;
+    --white: #FFFFFF;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--cream); color: var(--charcoal); font-family: 'DM Sans', sans-serif; font-weight: 400; overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    background: rgba(250,246,240,0.94); backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(61,61,74,0.07);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 3rem; height: 68px;
+  }
+  .nav-logo { display: flex; align-items: baseline; text-decoration: none; }
+  .nav-los { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 1.65rem; color: var(--orange); letter-spacing: -0.02em; line-height: 1; }
+  .nav-tacos { font-family: 'DM Sans', sans-serif; font-weight: 300; font-size: 1.65rem; color: var(--charcoal); letter-spacing: -0.01em; line-height: 1; }
+  .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+  .nav-links a { font-size: 0.88rem; font-weight: 500; color: var(--charcoal-mid); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--orange); }
+  .nav-btn { font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; background: var(--orange); color: white; border: none; padding: 0.6rem 1.5rem; border-radius: 100px; cursor: pointer; transition: background 0.2s, transform 0.15s; }
+  .nav-btn:hover { background: var(--orange-hover); transform: scale(1.03); }
+
+  /* HERO */
+  .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding-top: 68px; overflow: hidden; }
+  .hero-left { padding: 5rem 4rem 5rem 5vw; }
+  .eyebrow-tag {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 1.8rem;
+  }
+  .eyebrow-tag::before { content: ''; display: inline-block; width: 22px; height: 2px; background: var(--orange); border-radius: 2px; }
+  .hero-h1 {
+    font-family: 'DM Serif Display', serif; font-size: clamp(3rem, 5.5vw, 5.5rem);
+    line-height: 1.05; color: var(--charcoal); letter-spacing: -0.02em; margin-bottom: 1.5rem;
+  }
+  .hero-h1 em { color: var(--orange); font-style: italic; }
+  .hero-p {
+    font-size: 1.05rem; line-height: 1.7; color: var(--charcoal-mid); max-width: 440px; margin-bottom: 2.5rem;
+  }
+  .hero-btns {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn-prim { font-family: 'DM Sans', sans-serif; font-size: 0.92rem; font-weight: 600; background: var(--orange); color: white; border: none; padding: 0.9rem 2.2rem; border-radius: 100px; cursor: pointer; box-shadow: 0 4px 20px rgba(232,82,42,0.25); transition: all 0.2s; }
+  .btn-prim:hover { background: var(--orange-hover); transform: translateY(-1px); box-shadow: 0 8px 28px rgba(232,82,42,0.3); }
+  .btn-ghost { font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 500; background: transparent; color: var(--charcoal); border: 1.5px solid rgba(61,61,74,0.2); padding: 0.88rem 1.8rem; border-radius: 100px; cursor: pointer; transition: all 0.2s; }
+  .btn-ghost:hover { border-color: var(--orange); color: var(--orange); }
+  .hero-pills {
+    display: flex; align-items: center; gap: 0.6rem; margin-top: 2.5rem; flex-wrap: wrap;
+  }
+  .pill-lbl { font-size: 0.75rem; font-weight: 500; color: var(--charcoal-light); margin-right: 0.2rem; }
+  .partner-pill { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.35rem 0.85rem 0.35rem 0.45rem; border-radius: 100px; border: 1.5px solid rgba(61,61,74,0.1); background: white; font-size: 0.75rem; font-weight: 600; color: var(--charcoal); text-decoration: none; transition: all 0.2s; cursor: pointer; }
+  .partner-pill:hover { border-color: var(--orange); box-shadow: 0 2px 12px rgba(232,82,42,0.12); }
+  .pill-dot { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.48rem; font-weight: 800; color: white; text-align: center; line-height: 1.2; flex-shrink: 0; }
+
+  /* HERO RIGHT */
+  .hero-right {
+    position: relative; height: 100%; min-height: 620px;
+    background: var(--orange-pale); overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-circle { position: absolute; width: 480px; height: 480px; border-radius: 50%; background: radial-gradient(circle, rgba(232,82,42,0.18) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%,-50%); }
+  .hero-emoji { font-size: 13rem; line-height: 1; position: relative; z-index: 2; filter: drop-shadow(0 20px 50px rgba(232,82,42,0.22)); animation: float 4s ease-in-out infinite; }
+  .float-tag { display: none; }
+  .ftag-1, .ftag-2, .ftag-3 { display: none; }  .ft-icon { font-size: 1.4rem; }
+  .ft-main { font-size: 0.8rem; font-weight: 600; color: var(--charcoal); }
+  .ft-sub { font-size: 0.7rem; color: var(--charcoal-light); }
+  .ftag-1 { top: 22%; left: 5%; animation: floatA 5s ease-in-out infinite; }
+  .ftag-2 { bottom: 22%; right: 5%; animation: floatB 5.5s ease-in-out infinite; }
+  .ftag-3 { top: 62%; left: 4%; animation: floatA 6s 1s ease-in-out infinite; }
+
+  /* MARQUEE */
+  .marquee { background: var(--orange); padding: 0.85rem 0; overflow: hidden; white-space: nowrap; }
+  .mq-track { display: inline-flex; animation: marquee 20s linear infinite; }
+  .mq-item { font-size: 0.82rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.9); padding: 0 1.8rem; }
+  .mq-sep { color: rgba(255,255,255,0.35); padding: 0 0.3rem; }
+
+  /* SECTIONS */
+  .sec { padding: 6rem 5vw; }
+  .sec-alt { background: var(--cream-mid); }
+  .sec-white { background: white; }
+
+  .eyebrow {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem;
+  }
+  .eyebrow::before { content: ''; display: inline-block; width: 20px; height: 2px; background: var(--orange); border-radius: 2px; }
+  .sec-h2 { font-family: 'DM Serif Display', serif; font-size: clamp(2.4rem, 4.5vw, 4rem); line-height: 1.1; letter-spacing: -0.02em; color: var(--charcoal); margin-bottom: 1rem; }
+  .sec-h2 em { color: var(--orange); font-style: italic; }
+  .sec-intro { font-size: 1rem; color: var(--charcoal-mid); line-height: 1.7; max-width: 480px; margin-bottom: 3rem; }
+
+  /* MENU */
+  .filters { display: flex; gap: 0.5rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+  .filt { font-size: 0.82rem; font-weight: 500; padding: 0.45rem 1.2rem; border-radius: 100px; border: 1.5px solid rgba(61,61,74,0.15); background: transparent; color: var(--charcoal-mid); cursor: pointer; transition: all 0.2s; }
+  .filt.on, .filt:hover { background: var(--orange); border-color: var(--orange); color: white; }
+
+  .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 1.5rem; }
+  .mcard { background: white; border-radius: 20px; overflow: hidden; border: 1px solid rgba(61,61,74,0.06); transition: transform 0.25s, box-shadow 0.25s; cursor: pointer; }
+  .mcard:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(61,61,74,0.1); }
+  .mcard-top { background: var(--cream); padding: 2.5rem 1.5rem 2rem; display: flex; align-items: center; justify-content: center; position: relative; min-height: 155px; }
+  .mcard-emoji { font-size: 5rem; line-height: 1; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.07)); }
+  .card-tag { position: absolute; top: 1rem; right: 1rem; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.22rem 0.65rem; border-radius: 100px; }
+  .tag-hot { background: #FFEDE8; color: var(--orange); }
+  .tag-new { background: #E8F5E9; color: #2E7D32; }
+  .tag-veg { background: #E8F5E9; color: #2E7D32; }
+  .mcard-body { padding: 1.3rem 1.5rem 1.5rem; }
+  .mcard-name { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--charcoal); margin-bottom: 0.4rem; letter-spacing: -0.01em; }
+  .mcard-desc { font-size: 0.82rem; color: var(--charcoal-light); line-height: 1.55; margin-bottom: 1.2rem; }
+  .mcard-foot { display: flex; align-items: center; justify-content: space-between; }
+  .mcard-price { font-size: 1.05rem; font-weight: 600; color: var(--charcoal); }
+  .add-btn { width: 36px; height: 36px; border-radius: 50%; background: var(--orange); border: none; color: white; font-size: 1.3rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; line-height: 1; }
+  .add-btn:hover { background: var(--orange-hover); transform: scale(1.1); }
+
+  /* ORDER */
+  .order-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 4rem; align-items: start; }
+  .method-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 2rem; }
+  .mcard-sel { background: white; border: 2px solid rgba(61,61,74,0.1); border-radius: 16px; padding: 1.2rem; cursor: pointer; transition: all 0.2s; }
+  .mcard-sel:hover { border-color: rgba(232,82,42,0.4); }
+  .mcard-sel.on { border-color: var(--orange); background: var(--orange-pale); }
+  .mcard-top2 { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; }
+  .mlogo { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 0.48rem; font-weight: 800; color: white; line-height: 1.2; text-align: center; flex-shrink: 0; }
+  .mcheck { width: 20px; height: 20px; border-radius: 50%; border: 2px solid rgba(61,61,74,0.18); transition: all 0.2s; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: transparent; }
+  .mcard-sel.on .mcheck { background: var(--orange); border-color: var(--orange); color: white; }
+  .mname { font-size: 0.85rem; font-weight: 600; color: var(--charcoal); }
+  .meta { font-size: 0.72rem; color: var(--charcoal-light); margin-top: 0.1rem; }
+  .mfee { font-size: 0.78rem; font-weight: 600; color: var(--orange); margin-top: 0.3rem; }
+
+  .app-notice { background: var(--orange-pale); border: 1.5px solid rgba(232,82,42,0.2); border-radius: 16px; padding: 1.2rem 1.5rem; margin-bottom: 1.5rem; display: none; }
+  .pickup-notice { background: #F0FAF4; border: 1.5px solid rgba(34,139,34,0.2); border-radius: 16px; padding: 1.4rem 1.5rem; margin-bottom: 1.5rem; display: none; }
+  .pickup-notice .pn-title { font-size: 0.78rem; font-weight: 700; color: #2E7D32; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.4rem; }
+  .pickup-notice .pn-row { display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.85rem; color: var(--charcoal-mid); margin-bottom: 0.45rem; line-height: 1.5; }
+  .pickup-notice .pn-row strong { color: var(--charcoal); font-weight: 600; }
+  .pickup-notice .pn-icon { font-size: 1rem; flex-shrink: 0; margin-top: 0.05rem; }
+  .an-title { font-size: 0.78rem; font-weight: 700; color: var(--orange); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.3rem; }
+  .an-desc { font-size: 0.82rem; color: var(--charcoal-mid); line-height: 1.5; }
+  .an-link { display: inline-block; margin-top: 0.6rem; font-size: 0.8rem; font-weight: 600; color: var(--orange); text-decoration: none; border-bottom: 1px solid rgba(232,82,42,0.35); }
+
+  .fg { margin-bottom: 1rem; }
+  .fl { display: block; font-size: 0.73rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--charcoal-mid); margin-bottom: 0.45rem; }
+  .fi { width: 100%; background: white; border: 1.5px solid rgba(61,61,74,0.12); border-radius: 12px; color: var(--charcoal); font-family: 'DM Sans', sans-serif; font-size: 0.92rem; padding: 0.75rem 1rem; outline: none; transition: all 0.2s; }
+  .fi:focus { border-color: var(--orange); box-shadow: 0 0 0 3px rgba(232,82,42,0.1); }
+  .fi::placeholder { color: var(--charcoal-light); }
+  .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  /* CART */
+  .cart-box { background: white; border-radius: 24px; padding: 2rem; border: 1px solid rgba(61,61,74,0.07); box-shadow: 0 4px 32px rgba(61,61,74,0.06); position: sticky; top: 90px; }
+  .cart-hdg { font-family: 'DM Serif Display', serif; font-size: 1.6rem; color: var(--charcoal); margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(61,61,74,0.08); letter-spacing: -0.01em; }
+  .cart-empty-msg { text-align: center; padding: 2.5rem 1rem; color: var(--charcoal-light); font-size: 0.88rem; font-style: italic; }
+  .empty-ico { font-size: 2.5rem; display: block; margin-bottom: 0.7rem; }
+  .citem { display: flex; align-items: center; padding: 0.7rem 0; border-bottom: 1px solid rgba(61,61,74,0.06); gap: 0.8rem; }
+  .ci-em { font-size: 1.5rem; flex-shrink: 0; }
+  .ci-nm { flex: 1; font-size: 0.88rem; font-weight: 500; color: var(--charcoal); }
+  .ci-q { display: flex; align-items: center; gap: 0.4rem; }
+  .qb { width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid rgba(61,61,74,0.15); background: transparent; color: var(--charcoal-mid); cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: all 0.15s; line-height: 1; }
+  .qb:hover { border-color: var(--orange); color: var(--orange); background: var(--orange-pale); }
+  .qn { font-size: 0.85rem; font-weight: 600; min-width: 18px; text-align: center; }
+  .ci-pr { font-size: 0.85rem; font-weight: 600; color: var(--charcoal); min-width: 55px; text-align: right; }
+  .cart-tots { margin-top: 1.2rem; }
+  .trow { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--charcoal-mid); margin-bottom: 0.5rem; }
+  .trow.grand { font-size: 1.05rem; font-weight: 700; color: var(--charcoal); margin-top: 0.8rem; padding-top: 0.8rem; border-top: 1px solid rgba(61,61,74,0.1); }
+  .trow.grand span:last-child { color: var(--orange); }
+  .checkout-btn { width: 100%; margin-top: 1.5rem; background: var(--orange); color: white; border: none; border-radius: 100px; padding: 1rem; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 20px rgba(232,82,42,0.22); }
+  .checkout-btn:hover { background: var(--orange-hover); transform: translateY(-1px); }
+
+  /* TRACK */
+  .track-card { max-width: 680px; margin: 3rem auto 0; background: white; border-radius: 28px; padding: 3rem; box-shadow: 0 8px 48px rgba(61,61,74,0.08); }
+  .track-row { display: flex; border-radius: 100px; overflow: hidden; border: 1.5px solid rgba(61,61,74,0.12); margin-top: 1.5rem; }
+  .track-in { flex: 1; border: none; outline: none; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; padding: 0.85rem 1.4rem; color: var(--charcoal); background: transparent; }
+  .track-in::placeholder { color: var(--charcoal-light); }
+  .track-go { background: var(--orange); color: white; border: none; padding: 0.85rem 1.8rem; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: background 0.2s; border-radius: 0 100px 100px 0; }
+  .track-go:hover { background: var(--orange-hover); }
+  .track-res { display: none; margin-top: 2.5rem; }
+  .tr-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; }
+  .tr-id { font-size: 0.82rem; font-weight: 600; color: var(--charcoal-mid); }
+  .tr-id span { color: var(--orange); }
+  .tr-eta { font-size: 0.8rem; font-weight: 600; color: #2E7D32; background: #E8F5E9; padding: 0.25rem 0.8rem; border-radius: 100px; }
+  .tr-prov { font-size: 0.82rem; color: var(--charcoal-light); font-style: italic; margin-bottom: 2rem; }
+  .steps { display: flex; position: relative; }
+  .steps-bg { position: absolute; top: 20px; left: 20px; right: 20px; height: 2px; background: rgba(61,61,74,0.08); }
+  .steps-bar { position: absolute; top: 20px; left: 20px; height: 2px; background: var(--orange); width: 0%; transition: width 1.3s ease; }
+  .step { flex: 1; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 1; }
+  .sdot { width: 40px; height: 40px; border-radius: 50%; border: 2px solid rgba(61,61,74,0.12); background: var(--cream); display: flex; align-items: center; justify-content: center; font-size: 1rem; margin-bottom: 0.6rem; transition: all 0.3s; }
+  .step.done .sdot { background: var(--orange); border-color: var(--orange); }
+  .step.active .sdot { background: white; border-color: var(--orange); box-shadow: 0 0 0 4px rgba(232,82,42,0.15); }
+  .slbl { font-size: 0.68rem; font-weight: 500; color: var(--charcoal-light); text-align: center; line-height: 1.4; max-width: 70px; }
+  .step.done .slbl, .step.active .slbl { color: var(--charcoal); font-weight: 600; }
+  .lala-box { display: none; margin-top: 1.5rem; background: #FFF4ED; border: 1.5px solid rgba(255,102,0,0.2); border-radius: 16px; padding: 1.2rem 1.5rem; }
+  .lb-t { font-size: 0.78rem; font-weight: 700; color: #FF6600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.3rem; }
+  .lb-d { font-size: 0.82rem; color: var(--charcoal-mid); }
+  .lb-l { color: #FF6600; font-weight: 600; font-size: 0.8rem; text-decoration: none; border-bottom: 1px solid rgba(255,102,0,0.35); display: inline-block; margin-top: 0.5rem; }
+
+  /* PARTNERS */
+  .partner-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3rem; }
+  .pcard { background: white; border-radius: 24px; padding: 2.5rem 2rem; border: 1px solid rgba(61,61,74,0.07); transition: transform 0.25s, box-shadow 0.25s; }
+  .pcard:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(61,61,74,0.1); }
+  .pbadge { width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 0.55rem; font-weight: 800; color: white; line-height: 1.3; text-align: center; margin-bottom: 1.5rem; }
+  .pname { font-family: 'DM Serif Display', serif; font-size: 1.7rem; color: var(--charcoal); margin-bottom: 0.5rem; letter-spacing: -0.01em; }
+  .ptagline { font-size: 0.85rem; color: var(--charcoal-mid); line-height: 1.6; margin-bottom: 1.5rem; }
+  .pfeats { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; margin-bottom: 2rem; }
+  .pfeats li { font-size: 0.82rem; color: var(--charcoal-mid); display: flex; align-items: center; gap: 0.5rem; }
+  .pfeats li::before { content: '✓'; font-size: 0.75rem; font-weight: 700; color: var(--orange); flex-shrink: 0; }
+  .pbtn { display: inline-block; font-size: 0.82rem; font-weight: 600; color: var(--orange); text-decoration: none; border: 1.5px solid rgba(232,82,42,0.3); border-radius: 100px; padding: 0.5rem 1.3rem; transition: all 0.2s; }
+  .pbtn:hover { background: var(--orange); color: white; border-color: var(--orange); }
+
+  /* MODAL */
+  .overlay { position: fixed; inset: 0; background: rgba(61,61,74,0.45); backdrop-filter: blur(8px); z-index: 900; display: none; align-items: center; justify-content: center; padding: 1rem; }
+  .overlay.open { display: flex; }
+  .modal { background: var(--cream); border-radius: 28px; max-width: 520px; width: 100%; max-height: 92vh; overflow-y: auto; }
+  .mhdr { padding: 2rem 2rem 1.5rem; border-bottom: 1px solid rgba(61,61,74,0.08); display: flex; justify-content: space-between; align-items: flex-start; }
+  .mtitle { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--charcoal); letter-spacing: -0.02em; }
+  .msub { font-size: 0.78rem; color: var(--charcoal-light); margin-top: 0.3rem; }
+  .mx { background: rgba(61,61,74,0.08); border: none; border-radius: 50%; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--charcoal-mid); font-size: 1.1rem; transition: background 0.2s; flex-shrink: 0; }
+  .mx:hover { background: rgba(232,82,42,0.1); color: var(--orange); }
+  .mbody { padding: 1.5rem 2rem; }
+  .mfooter { padding: 0 2rem 2rem; }
+
+  /* TOAST */
+  .toast { position: fixed; bottom: 2rem; right: 2rem; z-index: 999; background: var(--charcoal); color: white; border-radius: 16px; padding: 1rem 1.4rem; box-shadow: 0 8px 32px rgba(0,0,0,0.18); transform: translateY(80px); opacity: 0; transition: all 0.4s cubic-bezier(0.16,1,0.3,1); max-width: 280px; display: flex; gap: 0.8rem; align-items: flex-start; }
+  .toast.show { transform: translateY(0); opacity: 1; }
+  .tst-ico { font-size: 1.3rem; flex-shrink: 0; }
+  .tst-t { font-size: 0.82rem; font-weight: 600; margin-bottom: 0.15rem; }
+  .tst-m { font-size: 0.76rem; color: rgba(255,255,255,0.55); }
+
+  /* FLOAT CART */
+  .cart-float { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--charcoal); color: white; border: none; border-radius: 100px; padding: 0.85rem 1.8rem; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 600; cursor: pointer; z-index: 500; display: flex; align-items: center; gap: 0.8rem; box-shadow: 0 8px 32px rgba(0,0,0,0.18); transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), background 0.2s; white-space: nowrap; }
+  .cart-float.show { transform: translateX(-50%) translateY(0); }
+  .cart-float:hover { background: var(--orange); }
+  .cf-n { background: var(--orange); border-radius: 50%; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 700; }
+  .cart-float:hover .cf-n { background: white; color: var(--orange); }
+
+  /* FOOTER */
+  footer { background: var(--charcoal); color: white; padding: 4rem 5vw 2rem; }
+  .ft-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+  .ft-los { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 2rem; color: var(--orange); letter-spacing: -0.02em; }
+  .ft-t { font-family: 'DM Sans', sans-serif; font-weight: 300; font-size: 2rem; color: white; letter-spacing: -0.01em; }
+  .ft-sub { font-size: 0.88rem; color: rgba(255,255,255,0.4); line-height: 1.7; margin-top: 0.8rem; max-width: 250px; }
+  .ft-soc { display: flex; gap: 0.6rem; margin-top: 1.5rem; }
+  .ft-s { width: 36px; height: 36px; border-radius: 10px; background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; font-size: 0.82rem; font-weight: 600; color: rgba(255,255,255,0.45); text-decoration: none; transition: all 0.2s; }
+  .ft-s:hover { background: var(--orange); color: white; }
+  .ft-ct { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 1.2rem; }
+  .ft-l { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .ft-l a { font-size: 0.88rem; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+  .ft-l a:hover { color: var(--orange); }
+  .ft-bot { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+  .ft-copy { font-size: 0.78rem; color: rgba(255,255,255,0.22); }
+  .ft-badges { display: flex; gap: 0.6rem; align-items: center; }
+  .ftb { height: 26px; border-radius: 6px; display: flex; align-items: center; justify-content: center; padding: 0 0.6rem; font-size: 0.48rem; font-weight: 800; color: white; }
+
+  /* ANIMATIONS */
+  @keyframes trompoSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes trompoSliceX {
+    0%   { rx: 68; }
+    25%  { rx: 20; }
+    50%  { rx: 68; }
+    75%  { rx: 20; }
+    100% { rx: 68; }
+  }
+  @keyframes flameFlicker { 0%,100% { transform: scaleX(1) scaleY(1); opacity:1; } 25% { transform: scaleX(1.08) scaleY(1.12); opacity:0.92; } 50% { transform: scaleX(0.93) scaleY(1.06); opacity:0.96; } 75% { transform: scaleX(1.05) scaleY(0.96); opacity:0.98; } }
+  @keyframes flameFlicker2 { 0%,100% { transform: scaleX(1) scaleY(1); opacity:0.85; } 33% { transform: scaleX(0.9) scaleY(1.14); opacity:0.75; } 66% { transform: scaleX(1.1) scaleY(0.92); opacity:0.9; } }
+  @keyframes drip { 0% { transform: translateY(0); opacity:1; } 100% { transform: translateY(18px); opacity:0; } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+  @keyframes floatA { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  @keyframes floatB { 0%,100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+  @keyframes steam { 0%,100% { opacity:0.5; transform:translateY(0) scaleX(1); } 50% { opacity:0.15; transform:translateY(-12px) scaleX(1.3); } }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 3.5rem 1.5rem 2rem; }
+    .hero-right { min-height: 300px; }
+    .hero-emoji { font-size: 7rem; }
+    .ftag-3 { display: none; }
+    .sec { padding: 4rem 1.5rem; }
+    .order-grid { grid-template-columns: 1fr; }
+    .cart-box { position: static; }
+    .partner-cards { grid-template-columns: 1fr; }
+    .ft-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .method-grid { grid-template-columns: 1fr 1fr; }
+    .track-card { padding: 2rem 1.5rem; }
+    .ft-bot { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+  <div class="tst-ico">🌮</div>
+  <div><div class="tst-t">Added to cart!</div><div class="tst-m" id="toastMsg"></div></div>
+</div>
+
+<!-- Float Cart -->
+<button class="cart-float" id="cartFloat" onclick="openModal()">
+  🛒 View Cart <span class="cf-n" id="cartCount">0</span>
+</button>
+
+<!-- Modal -->
+<div class="overlay" id="overlay" onclick="overlayClick(event)">
+  <div class="modal">
+    <div class="mhdr">
+      <div><div class="mtitle">Your Order</div><div class="msub">Review and checkout</div></div>
+      <button class="mx" onclick="closeModal()">✕</button>
+    </div>
+    <div class="mbody">
+      <div id="mItems" style="margin-bottom:1.5rem;"></div>
+      <div id="mTots" class="cart-tots" style="display:none;padding-bottom:1.2rem;border-bottom:1px solid rgba(61,61,74,0.08);">
+        <div class="trow"><span>Subtotal</span><span id="mSub">฿0</span></div>
+        <div class="trow"><span>Delivery</span><span id="mDel">฿0</span></div>
+        <div class="trow grand"><span>Total</span><span id="mTot">฿0</span></div>
+      </div>
+      <div style="margin-top:1.5rem;">
+        <div class="fl" style="margin-bottom:0.8rem;">Delivery Method</div>
+        <div class="method-grid" id="mMethodGrid" style="grid-template-columns:1fr 1fr;">
+          <div class="mcard-sel on" onclick="pickM(this,'lalamove',59)">
+            <div class="mcard-top2"><div class="mlogo" style="background:#FF6600;">LALA<br>MOVE</div><div class="mcheck">✓</div></div>
+            <div class="mname">Delivery via Lalamove</div><div class="meta">GPS track • 25–40 min</div><div class="mfee">฿59</div>
+          </div>
+          <div class="mcard-sel" onclick="pickM(this,'pickup',0)">
+            <div class="mcard-top2"><div class="mlogo" style="background:#5B7FA6;font-size:1.1rem;">🏪</div><div class="mcheck">✓</div></div>
+            <div class="mname">Pick Up</div><div class="meta">Ready in 15–20 min</div><div class="mfee" style="color:#2E7D32;">Free</div>
+          </div>
+          <div class="mcard-sel" onclick="pickM(this,'lineman',0)">
+            <div class="mcard-top2"><div class="mlogo" style="background:#00B900;">LINE<br>MAN</div><div class="mcheck">✓</div></div>
+            <div class="mname">LINE MAN</div><div class="meta">Via LINE MAN app</div><div class="mfee">In-app</div>
+          </div>
+          <div class="mcard-sel" onclick="pickM(this,'grab',0)">
+            <div class="mcard-top2"><div class="mlogo" style="background:#00B14F;">GRAB<br>FOOD</div><div class="mcheck">✓</div></div>
+            <div class="mname">GrabFood</div><div class="meta">Via GrabFood app</div><div class="mfee">In-app</div>
+          </div>
+        </div>
+        <div class="app-notice" id="mAppNotice">
+          <div class="an-title">Order via Partner App</div>
+          <div class="an-desc">You'll be redirected to place your order. Search for <strong>LOS Tacos</strong> in the app.</div>
+          <a class="an-link" id="mAppLink" href="#" target="_blank">Open App →</a>
+        </div>
+        <div class="pickup-notice" id="mPickupNotice">
+          <div class="pn-title">🏪 Pick Up at Our Shop</div>
+          <div class="pn-row"><span class="pn-icon">📍</span><span><strong>Sukhumvit Soi 11</strong>, Bangkok 10110</span></div>
+          <div class="pn-row"><span class="pn-icon">⏱</span><span>Ready in <strong>15–20 minutes</strong> after order</span></div>
+          <div class="pn-row"><span class="pn-icon">🕐</span><span>Open <strong>Mon–Sun, 11am–11pm</strong></span></div>
+          <div class="pn-row"><span class="pn-icon">📞</span><span>Call us: <strong>+66 80 000 0000</strong></span></div>
+        </div>
+        <div id="mAddrForm">
+          <div id="mDeliveryFields">
+          <div class="fg"><label class="fl">Delivery Address</label><input class="fi" type="text" placeholder="Street, soi, building..."></div>
+          <div class="frow">
+            <div class="fg"><label class="fl">District</label><input class="fi" type="text" placeholder="e.g. Thonglor"></div>
+            <div class="fg"><label class="fl">Phone</label><input class="fi" type="tel" placeholder="+66 8X XXX XXXX"></div>
+          </div>
+          <div class="fg"><label class="fl">Rider Notes</label><input class="fi" type="text" placeholder="Gate code, landmark..."></div>
+          </div>
+          <div id="mPickupFields" style="display:none;">
+          <div class="frow">
+            <div class="fg"><label class="fl">Your Name</label><input class="fi" type="text" placeholder="Name for the order"></div>
+            <div class="fg"><label class="fl">Phone</label><input class="fi" type="tel" placeholder="+66 8X XXX XXXX"></div>
+          </div>
+          <div class="fg"><label class="fl">Special Instructions</label><input class="fi" type="text" placeholder="Spice level, allergies..."></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mfooter">
+      <button class="checkout-btn" id="mPlaceBtn" onclick="placeOrder()">Place Order — <span id="mBtnTotal">฿0</span></button>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <span class="nav-los">LOS</span><span class="nav-tacos">Tacos</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#order">Order</a></li>
+    <li><a href="#track">Track</a></li>
+    <li><a href="#partners">Delivery</a></li>
+  </ul>
+  <button class="nav-btn" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">Order Now</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="eyebrow-tag">Tacos from CDMX</div>
+    <h1 class="hero-h1">Authentic Mexican<br>Cooking in the<br><em>Land of Smiles</em></h1>
+    <p class="hero-p">Made fresh every day — delivered hot or ready to pick up, anywhere in Bangkok.</p>
+    <div class="hero-btns">
+      <button class="btn-prim" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">Order Delivery</button>
+      <button class="btn-ghost" onclick="document.getElementById('track').scrollIntoView({behavior:'smooth'})">Track My Order</button>
+    </div>
+    <div class="hero-pills">
+      <span class="pill-lbl">Order via</span>
+      <a class="partner-pill" href="#order"><span class="pill-dot" style="background:#FF6600;font-size:0.38rem;">LL</span>Lalamove</a>
+      <a class="partner-pill" href="#order"><span class="pill-dot" style="background:#5B7FA6;font-size:0.9rem;">🏪</span>Pick Up</a>
+      <a class="partner-pill" href="https://lineman.line.me" target="_blank"><span class="pill-dot" style="background:#00B900;font-size:0.38rem;">LM</span>LINE MAN</a>
+      <a class="partner-pill" href="https://food.grab.com" target="_blank"><span class="pill-dot" style="background:#00B14F;font-size:0.38rem;">GF</span>GrabFood</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-circle"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="mq-track">
+    <span class="mq-item">🌮 Al Pastor</span><span class="mq-sep">·</span>
+    <span class="mq-item">🥩 Carne Asada</span><span class="mq-sep">·</span>
+    <span class="mq-item">🍗 Pollo Asado</span><span class="mq-sep">·</span>
+    <span class="mq-item">🫘 Frijoles</span><span class="mq-sep">·</span>
+    <span class="mq-item">🧀 Quesadillas</span><span class="mq-sep">·</span>
+    <span class="mq-item">🥑 Guacamole</span><span class="mq-sep">·</span>
+    <span class="mq-item">🌯 Burritos</span><span class="mq-sep">·</span>
+    <span class="mq-item">🫙 Elote</span><span class="mq-sep">·</span>
+    <span class="mq-item">🍺 Cerveza Fría</span><span class="mq-sep">·</span>
+    <span class="mq-item">🌶️ Salsa Verde</span><span class="mq-sep">·</span>
+    <span class="mq-item">🌮 Al Pastor</span><span class="mq-sep">·</span>
+    <span class="mq-item">🥩 Carne Asada</span><span class="mq-sep">·</span>
+    <span class="mq-item">🍗 Pollo Asado</span><span class="mq-sep">·</span>
+    <span class="mq-item">🫘 Frijoles</span><span class="mq-sep">·</span>
+    <span class="mq-item">🧀 Quesadillas</span><span class="mq-sep">·</span>
+    <span class="mq-item">🥑 Guacamole</span><span class="mq-sep">·</span>
+    <span class="mq-item">🌯 Burritos</span><span class="mq-sep">·</span>
+    <span class="mq-item">🫙 Elote</span><span class="mq-sep">·</span>
+    <span class="mq-item">🍺 Cerveza Fría</span><span class="mq-sep">·</span>
+    <span class="mq-item">🌶️ Salsa Verde</span><span class="mq-sep">·</span>
+  </div>
+</div>
+
+<!-- MENU -->
+<section class="sec sec-white" id="menu">
+  <div class="eyebrow">Our Menu</div>
+  <h2 class="sec-h2">Made Fresh,<br><em>Every Day</em></h2>
+  <p class="sec-intro">From slow-marinated al pastor to fire-grilled carne asada — everything made from scratch using imported Mexican ingredients.</p>
+  <div class="filters">
+    <button class="filt on" onclick="filterMenu('all',this)">All</button>
+    <button class="filt" onclick="filterMenu('tacos',this)">Tacos</button>
+    <button class="filt" onclick="filterMenu('mains',this)">Mains</button>
+    <button class="filt" onclick="filterMenu('sides',this)">Sides</button>
+    <button class="filt" onclick="filterMenu('veg',this)">Vegetarian</button>
+  </div>
+  <div class="menu-grid" id="menuGrid"></div>
+</section>
+
+<!-- ORDER -->
+<section class="sec sec-alt" id="order">
+  <div class="order-grid">
+    <div>
+      <div class="eyebrow">Place Your Order</div>
+      <h2 class="sec-h2">Order &amp;<br><em>Collect</em></h2>
+      <p class="sec-intro">All website deliveries are dispatched via Lalamove with real-time GPS tracking. LINE MAN and GrabFood link to their own apps. Or skip the wait and pick up in-store.</p>
+      <div class="method-grid" id="mainGrid" style="grid-template-columns:1fr 1fr;">
+        <div class="mcard-sel on" onclick="syncM(this,'lalamove',59)">
+          <div class="mcard-top2"><div class="mlogo" style="background:#FF6600;">LALA<br>MOVE</div><div class="mcheck">✓</div></div>
+          <div class="mname">Delivery via Lalamove</div><div class="meta">GPS tracking • 25–40 min</div><div class="mfee">฿59 delivery</div>
+        </div>
+        <div class="mcard-sel" onclick="syncM(this,'pickup',0)">
+          <div class="mcard-top2"><div class="mlogo" style="background:#5B7FA6;font-size:1.1rem;">🏪</div><div class="mcheck">✓</div></div>
+          <div class="mname">Pick Up In-Store</div><div class="meta">Ready in 15–20 min</div><div class="mfee" style="color:#2E7D32;">Free</div>
+        </div>
+        <div class="mcard-sel" onclick="window.open('https://lineman.line.me','_blank')">
+          <div class="mcard-top2"><div class="mlogo" style="background:#00B900;">LINE<br>MAN</div><div class="mcheck"></div></div>
+          <div class="mname">LINE MAN</div><div class="meta">Opens LINE MAN app</div><div class="mfee" style="color:var(--charcoal-light);">→ App</div>
+        </div>
+        <div class="mcard-sel" onclick="window.open('https://food.grab.com','_blank')">
+          <div class="mcard-top2"><div class="mlogo" style="background:#00B14F;">GRAB<br>FOOD</div><div class="mcheck"></div></div>
+          <div class="mname">GrabFood</div><div class="meta">Opens GrabFood app</div><div class="mfee" style="color:var(--charcoal-light);">→ App</div>
+        </div>
+      </div>
+      <div class="pickup-notice" id="mainPickupNotice" style="margin-bottom:1.2rem;">
+        <div class="pn-title">🏪 Pick Up at Our Shop</div>
+        <div class="pn-row"><span class="pn-icon">📍</span><span><strong>Sukhumvit Soi 11</strong>, Bangkok 10110</span></div>
+        <div class="pn-row"><span class="pn-icon">⏱</span><span>Ready in <strong>15–20 minutes</strong> after order</span></div>
+        <div class="pn-row"><span class="pn-icon">🕐</span><span>Open <strong>Mon–Sun, 11am–11pm</strong></span></div>
+      </div>
+      <div id="mainAddrForm">
+      <div class="fg"><label class="fl">Delivery Address</label><input class="fi" type="text" placeholder="Street, soi, building name..."></div>
+      <div class="frow">
+        <div class="fg"><label class="fl">District</label><input class="fi" type="text" placeholder="e.g. Thonglor"></div>
+        <div class="fg"><label class="fl">Phone</label><input class="fi" type="tel" placeholder="+66 8X XXX XXXX"></div>
+      </div>
+      <div class="fg"><label class="fl">Special Instructions</label><input class="fi" type="text" placeholder="Spice level, allergies, gate code..."></div>
+      </div>
+      <div id="mainPickupForm" style="display:none;">
+      <div class="frow">
+        <div class="fg"><label class="fl">Your Name</label><input class="fi" type="text" placeholder="Name for the order"></div>
+        <div class="fg"><label class="fl">Phone</label><input class="fi" type="tel" placeholder="+66 8X XXX XXXX"></div>
+      </div>
+      <div class="fg"><label class="fl">Special Instructions</label><input class="fi" type="text" placeholder="Spice level, allergies, extra napkins..."></div>
+      </div>
+    </div>
+    <div>
+      <div class="cart-box">
+        <div class="cart-hdg">Your Cart 🛒</div>
+        <div id="sideItems"></div>
+        <div id="sideTots" class="cart-tots" style="display:none;">
+          <div class="trow"><span>Subtotal</span><span id="sSub">฿0</span></div>
+          <div class="trow" id="sDelRow"><span>Delivery</span><span id="sDel">฿49</span></div>
+          <div class="trow grand"><span>Total</span><span id="sTot">฿0</span></div>
+        </div>
+        <button class="checkout-btn" onclick="openModal()">Proceed to Checkout</button>
+        <div style="margin-top:1.5rem;padding:1.2rem;background:var(--cream);border-radius:16px;">
+          <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--charcoal-light);margin-bottom:0.8rem;">Also available on</div>
+          <div style="display:flex;gap:0.6rem;flex-wrap:wrap;">
+            <a href="https://lineman.line.me" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.78rem;font-weight:600;color:var(--charcoal);text-decoration:none;padding:0.4rem 0.9rem;border-radius:100px;border:1.5px solid rgba(61,61,74,0.12);background:white;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#00B900'" onmouseout="this.style.borderColor='rgba(61,61,74,0.12)'"><span style="width:18px;height:18px;background:#00B900;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:0.38rem;font-weight:800;color:white;">LM</span>LINE MAN</a>
+            <a href="https://food.grab.com" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.78rem;font-weight:600;color:var(--charcoal);text-decoration:none;padding:0.4rem 0.9rem;border-radius:100px;border:1.5px solid rgba(61,61,74,0.12);background:white;transition:border-color 0.2s;" onmouseover="this.style.borderColor='#00B14F'" onmouseout="this.style.borderColor='rgba(61,61,74,0.12)'"><span style="width:18px;height:18px;background:#00B14F;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:0.38rem;font-weight:800;color:white;">GF</span>GrabFood</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRACK -->
+<section class="sec sec-white" id="track" style="text-align:center;">
+  <div class="eyebrow" style="justify-content:center;">Live Tracking</div>
+  <h2 class="sec-h2">Where's My<br><em>Order?</em></h2>
+  <div class="track-card">
+    <div class="fl">Enter Order ID or Phone Number</div>
+    <div class="track-row">
+      <input class="track-in" type="text" placeholder="e.g. LOS-20240311-001" id="trackInput">
+      <button class="track-go" onclick="doTrack()">Track →</button>
+    </div>
+    <div class="track-res" id="trackRes">
+      <div class="tr-meta">
+        <div class="tr-id">Order <span id="trId"></span></div>
+        <div class="tr-eta" id="trEtaLabel">ETA ~25 min</div>
+      </div>
+      <div class="tr-prov" id="trProv"></div>
+      <div class="steps">
+        <div class="steps-bg"></div>
+        <div class="steps-bar" id="stepsBar"></div>
+        <div class="step done"><div class="sdot">✓</div><div class="slbl">Confirmed</div></div>
+        <div class="step done"><div class="sdot">🔥</div><div class="slbl">Preparing</div></div>
+        <div class="step active"><div class="sdot">🛵</div><div class="slbl">On the Way</div></div>
+        <div class="step"><div class="sdot">🏠</div><div class="slbl">Delivered</div></div>
+      </div>
+      <div class="lala-box" id="lalaBox">
+        <div class="lb-t">Lalamove Live Tracking</div>
+        <div class="lb-d">Your rider is 1.2 km away. Open the Lalamove app for the live map.</div>
+        <a class="lb-l" href="https://www.lalamove.com/thailand" target="_blank">Open Lalamove →</a>
+      </div>
+      <div id="pickupReadyBox" style="display:none;margin-top:1.5rem;background:#F0FAF4;border:1.5px solid rgba(34,139,34,0.2);border-radius:16px;padding:1.2rem 1.5rem;">
+        <div style="font-size:0.78rem;font-weight:700;color:#2E7D32;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.4rem;">🏪 Pick Up Ready</div>
+        <div style="font-size:0.85rem;color:var(--charcoal-mid);margin-bottom:0.3rem;">Your order will be ready at <strong style="color:var(--charcoal);">Sukhumvit Soi 11</strong> in approximately 15–20 minutes.</div>
+        <div style="font-size:0.82rem;color:var(--charcoal-light);">Show this screen or quote your order ID at the counter.</div>
+      </div>
+    </div>
+    <div id="trackPH" style="padding:2.5rem 0;text-align:center;">
+      <div style="font-size:3rem;margin-bottom:0.8rem;">🛵</div>
+      <div style="font-size:0.88rem;color:var(--charcoal-light);font-style:italic;">Enter your order ID above to track your delivery</div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="sec sec-alt" id="partners">
+  <div class="eyebrow">Delivery Partners</div>
+  <h2 class="sec-h2">How We Get<br><em>To You</em></h2>
+  <div class="partner-cards">
+    <div class="pcard">
+      <div class="pbadge" style="background:#FF6600;">LALAMOVE</div>
+      <div class="pname">Lalamove</div>
+      <div class="ptagline">Integrated directly into our site for instant dispatch and real-time GPS tracking.</div>
+      <ul class="pfeats">
+        <li>Real-time GPS tracking</li>
+        <li>Instant driver dispatch</li>
+        <li>Proof of delivery photos</li>
+        <li>Live map in the app</li>
+        <li>25–40 min delivery</li>
+      </ul>
+      <a class="pbtn" href="https://www.lalamove.com/thailand" target="_blank">Learn more</a>
+    </div>
+    <div class="pcard">
+      <div class="pbadge" style="background:#00B900;">LINE MAN</div>
+      <div class="pname">LINE MAN</div>
+      <div class="ptagline">Thailand's most popular delivery platform, built right into the LINE app.</div>
+      <ul class="pfeats">
+        <li>Native LINE app experience</li>
+        <li>LINE Pay & PromptPay</li>
+        <li>Loyalty points & rewards</li>
+        <li>Scheduled delivery</li>
+        <li>Wide Bangkok coverage</li>
+      </ul>
+      <a class="pbtn" href="https://lineman.line.me" target="_blank">Order on LINE MAN</a>
+    </div>
+    <div class="pcard">
+      <div class="pbadge" style="background:#00B14F;">GRABFOOD</div>
+      <div class="pname">GrabFood</div>
+      <div class="ptagline">Southeast Asia's biggest delivery network — reliable, fast, and widely trusted.</div>
+      <ul class="pfeats">
+        <li>GrabPay integration</li>
+        <li>GrabRewards points</li>
+        <li>Scheduled & group orders</li>
+        <li>Wide delivery radius</li>
+        <li>24/7 customer support</li>
+      </ul>
+      <a class="pbtn" href="https://food.grab.com" target="_blank">Order on GrabFood</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-grid">
+    <div>
+      <div><span class="ft-los">LOS</span><span class="ft-t">Tacos</span></div>
+      <div class="ft-sub">Authentic Mexican cooking in the Land of Smiles. Made fresh every day.</div>
+      <div class="ft-soc">
+        <a class="ft-s" href="#">IG</a>
+        <a class="ft-s" href="#">FB</a>
+        <a class="ft-s" href="#">TK</a>
+      </div>
+    </div>
+    <div>
+      <div class="ft-ct">Menu</div>
+      <ul class="ft-l"><li><a href="#menu">Tacos</a></li><li><a href="#menu">Burritos</a></li><li><a href="#menu">Quesadillas</a></li><li><a href="#menu">Sides & Drinks</a></li><li><a href="#menu">Daily Specials</a></li></ul>
+    </div>
+    <div>
+      <div class="ft-ct">Order & Delivery</div>
+      <ul class="ft-l"><li><a href="#order">Order Online</a></li><li><a href="https://www.lalamove.com" target="_blank">Delivery via Lalamove</a></li><li><a href="https://lineman.line.me" target="_blank">Via LINE MAN</a></li><li><a href="https://food.grab.com" target="_blank">Via GrabFood</a></li><li><a href="#track">Track Order</a></li></ul>
+    </div>
+    <div>
+      <div class="ft-ct">Visit Us</div>
+      <ul class="ft-l"><li><a href="#">Sukhumvit Soi 11</a></li><li><a href="#">Bangkok 10110</a></li><li><a href="tel:+66800000000">+66 80 000 0000</a></li><li><a href="/cdn-cgi/l/email-protection#2f474a4343406f43405c5b4e4c405c015b47"><span class="__cf_email__" data-cfemail="29414c4545466945465a5d484a465a075d41">[email&#160;protected]</span></a></li><li><a href="#">Mon–Sun, 11am–11pm</a></li></ul>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <div class="ft-copy">© 2024 LOS Tacos Thailand · Authentic Mexican Cooking in the Land of Smiles</div>
+    <div class="ft-badges">
+      <span style="font-size:0.68rem;color:rgba(255,255,255,0.22);margin-right:0.3rem;">Partners</span>
+      <div class="ftb" style="background:#FF6600;">LALA</div>
+      <div class="ftb" style="background:#00B900;">LM</div>
+      <div class="ftb" style="background:#00B14F;">GF</div>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const MENU=[
+  {id:1,emoji:'🌮',name:'Al Pastor',desc:'Marinated pork, pineapple, red onion, cilantro, salsa verde',price:120,tag:'hot',cat:'tacos'},
+  {id:2,emoji:'🥩',name:'Carne Asada',desc:'Grilled skirt steak, guacamole, pico de gallo, lime crema',price:145,tag:'hot',cat:'tacos'},
+  {id:3,emoji:'🍗',name:'Pollo Asado',desc:'Chipotle chicken, pickled jalapeño, cotija cheese',price:115,tag:null,cat:'tacos'},
+  {id:4,emoji:'🧀',name:'Quesadilla',desc:'Oaxacan cheese, roasted peppers, choice of protein',price:130,tag:'new',cat:'mains'},
+  {id:5,emoji:'🌯',name:'Super Burrito',desc:'Rice, beans, meat, cheese, sour cream, pico de gallo',price:175,tag:'new',cat:'mains'},
+  {id:6,emoji:'🫘',name:'Frijoles Bowl',desc:'Slow-cooked black beans, epazote, queso fresco, chips',price:85,tag:null,cat:'sides,veg'},
+  {id:7,emoji:'🥑',name:'Guac & Chips',desc:'House-made guacamole, fresh tortilla chips, tomato pico',price:95,tag:null,cat:'sides,veg'},
+  {id:8,emoji:'🫙',name:'Elote Cup',desc:'Mexican street corn, mayo, cotija, chili powder, lime',price:75,tag:null,cat:'sides,veg'},
+];
+let cart={}, fee=59, prov='lalamove';
+document.addEventListener('DOMContentLoaded',()=>{ renderMenu(); updateUI(); });
+
+function renderMenu(f='all'){
+  const items=f==='all'?MENU:MENU.filter(i=>i.cat.includes(f));
+  document.getElementById('menuGrid').innerHTML=items.map(i=>`
+    <div class="mcard">
+      <div class="mcard-top">
+        <span class="mcard-emoji">${i.emoji}</span>
+        ${i.tag?`<span class="card-tag tag-${i.tag}">${i.tag.toUpperCase()}</span>`:''}
+      </div>
+      <div class="mcard-body">
+        <div class="mcard-name">${i.name}</div>
+        <div class="mcard-desc">${i.desc}</div>
+        <div class="mcard-foot">
+          <div class="mcard-price">฿${i.price}</div>
+          <button class="add-btn" onclick="addItem(${i.id})">+</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+function filterMenu(f,btn){
+  document.querySelectorAll('.filt').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  renderMenu(f);
+}
+function addItem(id){
+  const it=MENU.find(i=>i.id===id);
+  cart[id]=(cart[id]||0)+1;
+  showToast(`${it.emoji} ${it.name} added`);
+  updateUI();
+}
+function chQty(id,d){
+  cart[id]=(cart[id]||0)+d;
+  if(cart[id]<=0)delete cart[id];
+  updateUI();
+}
+function sub(){return Object.entries(cart).reduce((s,[id,q])=>s+MENU.find(i=>i.id==id).price*q,0);}
+function totalN(){return Object.values(cart).reduce((s,q)=>s+q,0);}
+
+function updateUI(){
+  const s=sub(),n=totalN(),g=s>0?s+fee:0;
+  const isPickup=prov==='pickup';
+  document.getElementById('cartFloat').classList.toggle('show',n>0);
+  document.getElementById('cartCount').textContent=n;
+  renderCartIn('sideItems',false);
+  const st=document.getElementById('sideTots');
+  if(s>0){
+    st.style.display='block';
+    document.getElementById('sSub').textContent=`฿${s}`;
+    const delRow=document.getElementById('sDelRow');
+    delRow.querySelector('span').textContent=isPickup?'Pickup':'Delivery';
+    document.getElementById('sDel').textContent=isPickup?'Free':`฿${fee}`;
+    document.getElementById('sDel').style.color=isPickup?'#2E7D32':'';
+    document.getElementById('sTot').textContent=`฿${g}`;
+  } else st.style.display='none';
+  renderCartIn('mItems',true);
+  const mt=document.getElementById('mTots');
+  if(s>0){mt.style.display='block';document.getElementById('mSub').textContent=`฿${s}`;document.getElementById('mDel').textContent=`฿${fee}`;document.getElementById('mTot').textContent=`฿${g}`;}
+  else mt.style.display='none';
+  document.getElementById('mBtnTotal').textContent=`฿${g}`;
+}
+function renderCartIn(id){
+  const c=document.getElementById(id);
+  const es=Object.entries(cart);
+  if(!es.length){c.innerHTML=`<div class="cart-empty-msg"><span class="empty-ico">🌮</span>Your cart is empty</div>`;return;}
+  c.innerHTML=es.map(([id,q])=>{const it=MENU.find(i=>i.id==id);return`<div class="citem"><span class="ci-em">${it.emoji}</span><span class="ci-nm">${it.name}</span><div class="ci-q"><button class="qb" onclick="chQty(${id},-1)">−</button><span class="qn">${q}</span><button class="qb" onclick="chQty(${id},1)">+</button></div><span class="ci-pr">฿${it.price*q}</span></div>`;}).join('');
+}
+
+function syncM(el,p,f){
+  document.querySelectorAll('#mainGrid .mcard-sel').forEach(c=>c.classList.remove('on'));
+  el.classList.add('on');prov=p;fee=f;
+  const isPickup=p==='pickup';
+  document.getElementById('mainPickupNotice').style.display=isPickup?'block':'none';
+  document.getElementById('mainAddrForm').style.display=isPickup?'none':'block';
+  document.getElementById('mainPickupForm').style.display=isPickup?'block':'none';
+  updateUI();
+}
+function pickM(el,p,f){
+  document.querySelectorAll('#mMethodGrid .mcard-sel').forEach(c=>c.classList.remove('on'));
+  el.classList.add('on');prov=p;fee=f;
+  const app=p==='lineman'||p==='grab';
+  const isPickup=p==='pickup';
+  document.getElementById('mAppNotice').style.display=app?'block':'none';
+  document.getElementById('mPickupNotice').style.display=isPickup?'block':'none';
+  document.getElementById('mAddrForm').style.display=(app)?'none':'block';
+  document.getElementById('mDeliveryFields').style.display=(isPickup)?'none':'block';
+  document.getElementById('mPickupFields').style.display=(isPickup)?'block':'none';
+  if(p==='lineman'){document.getElementById('mAppLink').href='https://lineman.line.me';document.getElementById('mAppLink').textContent='Open LINE MAN →';}
+  if(p==='grab'){document.getElementById('mAppLink').href='https://food.grab.com';document.getElementById('mAppLink').textContent='Open GrabFood →';}
+  updateUI();
+}
+
+function openModal(){document.getElementById('overlay').classList.add('open');updateUI();}
+function closeModal(){document.getElementById('overlay').classList.remove('open');}
+function overlayClick(e){if(e.target===document.getElementById('overlay'))closeModal();}
+
+function placeOrder(){
+  if(sub()===0){showToast('Add some items first! 🌮');return;}
+  if(prov==='lineman'){window.open('https://lineman.line.me','_blank');return;}
+  if(prov==='grab'){window.open('https://food.grab.com','_blank');return;}
+  const oid='LOS-'+Date.now().toString().slice(-8);
+  window._lastOrder={id:oid,prov};
+  closeModal();
+  if(prov==='pickup'){
+    showToast(`Order ${oid} ready in ~15 min! 🏪`);
+  } else {
+    showToast(`Order ${oid} placed! 🎉`);
+  }
+  cart={};updateUI();
+  setTimeout(()=>{document.getElementById('track').scrollIntoView({behavior:'smooth'});document.getElementById('trackInput').value=oid;setTimeout(()=>doTrack(oid,prov),700);},1200);
+}
+
+function doTrack(oid,p){
+  const id=oid||document.getElementById('trackInput').value.trim();
+  if(!id){showToast('Enter an order ID');return;}
+  const pr=p||prov||'direct';
+  document.getElementById('trackPH').style.display='none';
+  document.getElementById('trackRes').style.display='block';
+  document.getElementById('trId').textContent=id;
+  document.getElementById('lalaBox').style.display=pr==='lalamove'?'block':'none';
+  // For pickup, adjust steps display
+  const pickupBox=document.getElementById('pickupReadyBox');
+  if(pickupBox) pickupBox.style.display=pr==='pickup'?'block':'none';
+  const names={direct:'Direct delivery by our rider',lalamove:'Lalamove delivery',lineman:'LINE MAN delivery',grab:'GrabFood delivery',pickup:'Pick up at Sukhumvit Soi 11'};
+  document.getElementById('trProv').textContent=names[pr]||'Direct delivery';
+  document.getElementById('trEtaLabel').textContent=pr==='pickup'?'Ready in ~15 min':'ETA ~25 min';
+  setTimeout(()=>{document.getElementById('stepsBar').style.width='60%';},300);
+}
+
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2800);
+}
+</script>
+</body>
+</html>
